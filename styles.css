@@ -388,7 +388,7 @@ body::after {
 
 .hero-stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     padding: 50px 40px 40px 40px;
     border-bottom: 1px solid var(--border);
@@ -419,6 +419,10 @@ body::after {
     bottom: 0;
     width: 1px;
     background: var(--border);
+}
+
+.stat-item:last-child::after {
+    display: none;
 }
 
 .stat-number {
