@@ -120,9 +120,115 @@ function initCodeTyping() {
     }
 }
 
+// Contact Form Handler
+function initContactForm() {
+    const form = document.getElementById('contactForm');
+    const submitBtn = form?.querySelector('.form-submit');
+    
+    if (!form || !submitBtn) return;
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Show loading state
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+        
+        // Get form data
+        const formData = new FormData(form);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message')
+        };
+        
+        // Simulate form submission (replace with actual API call)
+        setTimeout(() => {
+            // Show success message
+            alert(`Thank you ${data.name}! Your message has been sent. I'll get back to you soon at ${data.email}.`);
+            
+            // Reset form
+            form.reset();
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+        }, 1500);
+    });
+}
+
+// Add smooth reveal animations
+function initRevealAnimations() {
+    const revealElements = document.querySelectorAll('.project-card, .achievement-card, .skill-item, .contact-card, .timeline-item');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100);
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        revealObserver.observe(el);
+    });
+}
+
+// Add parallax effect to hero
+function initParallax() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        if (scrolled < window.innerHeight) {
+            hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.3;
+        }
+    });
+}
+
+// Add cursor trail effect (optional, subtle)
+function initCursorEffect() {
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    document.body.appendChild(cursor);
+    
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    function animateCursor() {
+        cursorX += (mouseX - cursorX) * 0.1;
+        cursorY += (mouseY - cursorY) * 0.1;
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        requestAnimationFrame(animateCursor);
+    }
+    
+    animateCursor();
+}
+
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
     initCodeTyping();
+    initContactForm();
+    initRevealAnimations();
+    initParallax();
+    // initCursorEffect(); // Uncomment for cursor effect
 });
 
 // Mobile menu toggle (if needed in future)
