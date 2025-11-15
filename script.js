@@ -222,12 +222,254 @@ function initCursorEffect() {
     animateCursor();
 }
 
+// Interactive Code Window Tabs
+function initCodeTabs() {
+    const tabs = document.querySelectorAll('.window-tabs .tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetTab = tab.getAttribute('data-tab');
+            
+            // Remove active class from all tabs and contents
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            tab.classList.add('active');
+            const targetContent = document.querySelector(`.tab-content[data-content="${targetTab}"]`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+}
+
+// Interactive Splash Screen with Moving START Button
+function initSplashScreen() {
+    const splashScreen = document.getElementById('splashScreen');
+    const startButton = document.getElementById('startButton');
+    
+    if (!splashScreen || !startButton) return;
+    
+    let buttonPosition = { x: 50, y: 50 }; // Percentage positions
+    let isMoving = false;
+    let lastMoveTime = 0;
+    let moveCount = 0;
+    
+    // Set initial position (bottom center - ticket button stays at bottom)
+    startButton.style.position = 'absolute';
+    startButton.style.left = '50%';
+    startButton.style.bottom = '60px';
+    startButton.style.transform = 'translateX(-50%)';
+    
+    // Make button move when mouse approaches (but less aggressively)
+    document.addEventListener('mousemove', (e) => {
+        if (isMoving) return;
+        
+        const now = Date.now();
+        // Throttle movement - only check every 100ms
+        if (now - lastMoveTime < 100) return;
+        lastMoveTime = now;
+        
+        const rect = startButton.getBoundingClientRect();
+        const buttonCenterX = rect.left + rect.width / 2;
+        const buttonCenterY = rect.top + rect.height / 2;
+        
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        
+        const distance = Math.sqrt(
+            Math.pow(mouseX - buttonCenterX, 2) + Math.pow(mouseY - buttonCenterY, 2)
+        );
+        
+        // Only move if mouse is very close (80px) and button hasn't moved too many times
+        // After 3 moves, stop moving so user can click
+        if (distance < 80 && !isMoving && moveCount < 3) {
+            isMoving = true;
+            moveCount++;
+            
+            // Calculate new random position (keep at bottom, only move horizontally)
+            const newX = Math.random() * 70 + 15; // 15% to 85%
+            
+            buttonPosition.x = newX;
+            
+            startButton.style.left = `${buttonPosition.x}%`;
+            startButton.style.bottom = '60px';
+            startButton.style.transition = 'all 0.4s ease-out';
+            
+            setTimeout(() => {
+                isMoving = false;
+                startButton.style.transition = '';
+                
+                // After 2 seconds of no movement, reset move count
+                setTimeout(() => {
+                    if (moveCount >= 3) {
+                        moveCount = 0;
+                    }
+                }, 2000);
+            }, 400);
+        }
+    });
+    
+    // Handle button click
+    startButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        splashScreen.style.transition = 'opacity 0.6s ease-out, visibility 0.6s ease-out';
+        splashScreen.classList.add('hidden');
+        document.body.classList.add('loaded');
+    });
+    
+    // Also allow clicking even if button is moving
+    startButton.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+    });
+}
+
+// Expand/Collapse Project Cards
+function initProjectExpand() {
+    const projectCards = document.querySelectorAll('.compact-project-card');
+    
+    projectCards.forEach(card => {
+        const expandBtn = card.querySelector('.expand-btn');
+        if (!expandBtn) return;
+        
+        expandBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isExpanded = card.getAttribute('data-expanded') === 'true';
+            card.setAttribute('data-expanded', !isExpanded);
+        });
+        
+        // Also allow clicking the card itself
+        card.addEventListener('click', (e) => {
+            if (e.target !== expandBtn && !expandBtn.contains(e.target)) {
+                const isExpanded = card.getAttribute('data-expanded') === 'true';
+                card.setAttribute('data-expanded', !isExpanded);
+            }
+        });
+    });
+}
+
+// Neural Network Connections
+function initNeuralNetwork() {
+    const svg = document.getElementById('neuralSVG');
+    if (!svg) return;
+    
+    const container = document.querySelector('.neural-network-container');
+    if (!container) return;
+    
+    const neuronNodes = document.querySelectorAll('.network-node');
+    
+    if (neuronNodes.length === 0) return;
+    
+    // Set SVG dimensions
+    const containerRect = container.getBoundingClientRect();
+    svg.setAttribute('width', containerRect.width);
+    svg.setAttribute('height', containerRect.height);
+    
+    // No gradient needed for black and white design
+    
+    // Get creator core center position
+    const creatorCore = document.getElementById('creatorCore');
+    if (!creatorCore) return;
+    
+    const coreRect = creatorCore.getBoundingClientRect();
+    const containerRect2 = container.getBoundingClientRect();
+    // Connect from center of the core
+    const creatorX = coreRect.left + coreRect.width / 2 - containerRect2.left;
+    const creatorY = coreRect.top + coreRect.height / 2 - containerRect2.top;
+    
+    // Draw curved connections from creator figure to project nodes (4 corners)
+    neuronNodes.forEach((node, index) => {
+        const nodeRect = node.getBoundingClientRect();
+        const nodeX = nodeRect.left + nodeRect.width / 2 - containerRect2.left;
+        const nodeY = nodeRect.top + nodeRect.height / 2 - containerRect2.top;
+        
+        // Determine connection point based on position
+        let startX = creatorX;
+        let startY = creatorY;
+        
+        // Top nodes connect from upper body, bottom nodes from lower body
+        if (nodeY < creatorY) {
+            // Top nodes - connect from upper body/chest
+            startY = creatorY - 30;
+        } else {
+            // Bottom nodes - connect from lower body/waist
+            startY = creatorY + 30;
+        }
+        
+        // Calculate control points for smooth curved path (X pattern)
+        const dx = nodeX - startX;
+        const dy = nodeY - startY;
+        
+        // Create curved bezier path with crossing effect
+        const controlX1 = startX + dx * 0.4;
+        const controlY1 = startY + dy * 0.3;
+        const controlX2 = startX + dx * 0.6;
+        const controlY2 = startY + dy * 0.7;
+        
+        // Base connection line (subtle)
+        const basePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const pathData = `M ${startX} ${startY} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${nodeX} ${nodeY}`;
+        basePath.setAttribute('d', pathData);
+        basePath.setAttribute('class', 'connection-line');
+        svg.appendChild(basePath);
+        
+        // Energy current flowing along the path
+        const energyPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        energyPath.setAttribute('d', pathData);
+        energyPath.setAttribute('class', 'energy-line');
+        energyPath.style.animationDelay = `${index * 0.25}s`;
+        svg.appendChild(energyPath);
+        
+        // Energy particle (bright spot traveling)
+        const particlePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        particlePath.setAttribute('d', pathData);
+        particlePath.setAttribute('class', 'energy-particle');
+        particlePath.style.animationDelay = `${index * 0.25 + 0.6}s`;
+        svg.appendChild(particlePath);
+        
+        // Add hover effect to nodes
+        node.addEventListener('mouseenter', () => {
+            energyPath.style.strokeWidth = '5';
+            energyPath.style.filter = 'drop-shadow(0 0 12px rgba(34, 197, 94, 1))';
+            particlePath.style.strokeWidth = '6';
+            basePath.style.opacity = '0.7';
+        });
+        
+        node.addEventListener('mouseleave', () => {
+            energyPath.style.strokeWidth = '4';
+            energyPath.style.filter = 'drop-shadow(0 0 8px rgba(34, 197, 94, 1))';
+            particlePath.style.strokeWidth = '5';
+            basePath.style.opacity = '0.5';
+        });
+    });
+    
+    // Update on resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            svg.innerHTML = '';
+            initNeuralNetwork();
+        }, 250);
+    });
+}
+
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
+    initSplashScreen();
     initCodeTyping();
+    initCodeTabs();
     initContactForm();
     initRevealAnimations();
     initParallax();
+    setTimeout(() => {
+        initNeuralNetwork();
+    }, 500);
+    initProjectExpand();
     // initCursorEffect(); // Uncomment for cursor effect
 });
 

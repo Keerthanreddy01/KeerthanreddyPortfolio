@@ -7,9 +7,22 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Interactive Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <div class="splash-logo-container">
+                <h1 class="splash-name">KEERTHAN</h1>
+                <p class="splash-subtitle">REDDY</p>
+            </div>
+            <button class="ticket-button" id="startButton">
+                <span class="button-text">ENTER</span>
+                <span class="button-arrow">→</span>
+            </button>
+        </div>
+    </div>
     <!-- Header -->
     <header class="header">
         <nav class="nav">
@@ -19,11 +32,12 @@
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="#contact" class="btn-primary">Get in Touch</a>
+            <a href="#contact" class="btn-contact-nav">Get in Touch →</a>
         </nav>
     </header>
 
@@ -44,21 +58,7 @@
                     </p>
                     <div class="hero-cta">
                         <a href="#projects" class="btn-primary">View My Projects</a>
-                        <a href="#contact" class="btn-secondary">Get in Touch</a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">6+</div>
-                            <div class="stat-text">Projects</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">13+</div>
-                            <div class="stat-text">Languages</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-text">Passion</div>
-                        </div>
+                        <a href="#contact" class="btn-contact">Get in Touch →</a>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -72,11 +72,14 @@
                                 </div>
                                 <span class="window-title">keerthanreddy176@portfolio: ~/code</span>
                                 <div class="window-tabs">
-                                    <span class="tab active">portfolio.ts</span>
-                                    <span class="tab">about.ts</span>
+                                    <span class="tab active" data-tab="portfolio">portfolio.ts</span>
+                                    <span class="tab" data-tab="about">about.ts</span>
+                                    <span class="tab" data-tab="skills">skills.ts</span>
                                 </div>
                             </div>
                             <div class="code-content">
+                                <!-- Portfolio Tab Content -->
+                                <div class="tab-content active" data-content="portfolio">
                                 <div class="code-line name-line">
                                     <span class="line-number">1</span>
                                     <span class="code-keyword">const</span> 
@@ -101,6 +104,55 @@
                                     <span class="code-keyword">console</span><span class="code-operator">.</span><span class="code-function">log</span><span class="code-bracket">(</span>
                                     <span class="code-string">'Building the future...'</span>
                                     <span class="code-bracket">)</span><span class="code-operator">;</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- About Tab Content -->
+                                <div class="tab-content" data-content="about">
+                                    <div class="code-line">
+                                        <span class="line-number">1</span>
+                                        <span class="code-keyword">interface</span> <span class="code-operator"> </span><span class="code-variable">About</span> <span class="code-operator">{</span>
+                                    </div>
+                                    <div class="code-line">
+                                        <span class="line-number">2</span>
+                                        <span class="code-indent">  </span><span class="code-variable">passion</span><span class="code-operator">: </span><span class="code-string">'Transforming ideas into impact'</span><span class="code-operator">;</span>
+                                    </div>
+                                    <div class="code-line">
+                                        <span class="line-number">3</span>
+                                        <span class="code-indent">  </span><span class="code-variable">focus</span><span class="code-operator">: </span><span class="code-string">'AI-powered solutions'</span><span class="code-operator">;</span>
+                                    </div>
+                                    <div class="code-line">
+                                        <span class="line-number">4</span>
+                                        <span class="code-indent">  </span><span class="code-variable">mission</span><span class="code-operator">: </span><span class="code-string">'Building accessible, meaningful apps'</span><span class="code-operator">;</span>
+                                    </div>
+                                    <div class="code-line">
+                                        <span class="line-number">5</span>
+                                        <span class="code-operator">}</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Skills Tab Content -->
+                                <div class="tab-content" data-content="skills">
+                                    <div class="code-line">
+                                        <span class="line-number">1</span>
+                                        <span class="code-keyword">const</span> <span class="code-operator"> </span><span class="code-variable">skills</span> <span class="code-operator"> = </span><span class="code-bracket">{</span>
+                                    </div>
+                                    <div class="code-line">
+                                        <span class="line-number">2</span>
+                                        <span class="code-indent">  </span><span class="code-variable">frontend</span><span class="code-operator">: </span><span class="code-bracket">[</span><span class="code-string">'Flutter'</span><span class="code-operator">, </span><span class="code-string">'React'</span><span class="code-operator">, </span><span class="code-string">'HTML5'</span><span class="code-bracket">]</span><span class="code-operator">,</span>
+                                    </div>
+                                    <div class="code-line">
+                                        <span class="line-number">3</span>
+                                        <span class="code-indent">  </span><span class="code-variable">backend</span><span class="code-operator">: </span><span class="code-bracket">[</span><span class="code-string">'Django'</span><span class="code-operator">, </span><span class="code-string">'Node.js'</span><span class="code-operator">, </span><span class="code-string">'Firebase'</span><span class="code-bracket">]</span><span class="code-operator">,</span>
+                                    </div>
+                                    <div class="code-line">
+                                        <span class="line-number">4</span>
+                                        <span class="code-indent">  </span><span class="code-variable">ai</span><span class="code-operator">: </span><span class="code-bracket">[</span><span class="code-string">'TensorFlow'</span><span class="code-operator">, </span><span class="code-string">'NLP'</span><span class="code-operator">, </span><span class="code-string">'ML'</span><span class="code-bracket">]</span>
+                                    </div>
+                                    <div class="code-line">
+                                        <span class="line-number">5</span>
+                                        <span class="code-operator">}</span><span class="code-operator">;</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="code-footer">
@@ -109,12 +161,25 @@
                                 <span class="footer-text">TypeScript</span>
                             </div>
                         </div>
-                        <div class="floating-elements">
-                            <div class="floating-card card-1">🚀</div>
-                            <div class="floating-card card-2">💡</div>
-                            <div class="floating-card card-3">✨</div>
-                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">6+</div>
+                    <div class="stat-text">Projects Developed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">13+</div>
+                    <div class="stat-text">Languages Supported</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-text">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-text">Client Satisfaction</div>
                 </div>
             </div>
         </div>
@@ -126,19 +191,15 @@
             <p class="trust-text">Trusted by teams and recognized by industry leaders</p>
             <div class="trust-badges">
                 <div class="badge featured-badge">
-                    <span class="badge-icon">🏆</span>
                     <span>GenAIversity Finalist</span>
                 </div>
                 <div class="badge featured-badge">
-                    <span class="badge-icon">🤖</span>
                     <span>Summer of AI 2025</span>
                 </div>
                 <div class="badge featured-badge">
-                    <span class="badge-icon">👨‍💻</span>
                     <span>Tech Lead Intern</span>
                 </div>
                 <div class="badge featured-badge">
-                    <span class="badge-icon">🚀</span>
                     <span>Founder @ Applynk</span>
                 </div>
             </div>
@@ -150,23 +211,28 @@
         <div class="container">
             <div class="section-content">
                 <div class="content-left">
-                    <h2 class="section-title">Start with raw thoughts and ideas.</h2>
-                    <p class="section-description">
-                        Hey there! I'm Keerthan Reddy, a passionate AI/ML Developer, Mobile App Developer (Flutter), 
-                        and Frontend Engineer currently working as a Tech Lead Intern at Viswam.ai through the Summer of AI 2025 program.
-                    </p>
-                    <p class="section-description">
-                        I'm driven by the mission of building accessible, meaningful, Indian-language-first AI solutions 
-                        and turning ideas into polished, impactful digital experiences.
-                    </p>
+                    <h2 class="section-title">About Me</h2>
+                    <div class="about-content">
+                        <p class="about-text">
+                            Hi, I'm <strong>Keerthan Reddy</strong> — a Frontend & Mobile App Developer passionate about building human-centric digital experiences.
+                        </p>
+                        <p class="about-text">
+                            I love turning ideas into polished, meaningful products by combining clean UI, smooth UX, and smart AI-driven features.
+                        </p>
+                        <p class="about-text">
+                            I'm currently working on <strong>Greendot</strong>, an AI-powered agritech app that helps farmers detect plant diseases, track market trends, and access insights across 13+ Indian languages.
+                        </p>
+                        <p class="about-text">
+                            My mission is simple: <strong>build technology that solves real problems and creates real impact.</strong>
+                        </p>
+                    </div>
                 </div>
                 <div class="content-right">
                     <div class="input-card">
                         <div class="input-header">
-                            <span class="input-icon">💡</span>
-                            <span class="input-close">×</span>
+                            <span class="input-icon">☰</span>
                         </div>
-                        <input type="text" placeholder="Type to add a new thought or idea..." class="thought-input">
+                        <input type="text" placeholder="Start typing to brainstorm..." class="thought-input">
                     </div>
                 </div>
             </div>
@@ -176,24 +242,55 @@
     <!-- Watch Section -->
     <section class="section watch">
         <div class="container">
-            <div class="section-content reverse">
+            <div class="section-content">
                 <div class="content-left">
                     <h2 class="section-title">Watch ideas come to life.</h2>
                     <p class="section-description">
                         From concept to deployment, I craft beautiful, functional applications with clean code 
-                        and intelligent features.
+                        and intelligent features. Every project starts with a vision and ends with impact.
                     </p>
-                </div>
-                <div class="content-right">
-                    <div class="project-card">
-                        <div class="card-image">
-                            <div class="image-placeholder">
-                                <span class="image-icon">🚀</span>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">01</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Ideation</h4>
+                                <p class="step-text">Understanding problems and defining solutions</p>
                             </div>
                         </div>
-                        <div class="card-content">
-                            <h3 class="card-title">An example of innovation</h3>
-                            <p class="card-text">Transforming ideas into impactful digital experiences through code and creativity.</p>
+                        <div class="process-step">
+                            <div class="step-number">02</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Design</h4>
+                                <p class="step-text">Creating intuitive interfaces and experiences</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">03</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Development</h4>
+                                <p class="step-text">Building with clean, scalable code</p>
+                            </div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">04</div>
+                            <div class="step-content">
+                                <h4 class="step-title">Launch</h4>
+                                <p class="step-text">Deploying and iterating for success</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-right">
+                    <div class="process-visual">
+                        <div class="visual-circle">
+                            <div class="circle-inner"></div>
+                            <div class="circle-progress"></div>
+                        </div>
+                        <div class="visual-elements">
+                            <div class="visual-dot dot-1"></div>
+                            <div class="visual-dot dot-2"></div>
+                            <div class="visual-dot dot-3"></div>
+                            <div class="visual-dot dot-4"></div>
                         </div>
                     </div>
                 </div>
@@ -244,22 +341,22 @@
             <h2 class="section-title centered">Build polished outputs with skills that come with expertise, precision and innovation out of the box.</h2>
             <div class="skills-grid">
                 <div class="skill-item">
-                    <div class="skill-icon">🎨</div>
+                    <div class="skill-icon">FE</div>
                     <h3 class="skill-title">Frontend & Mobile</h3>
                     <p class="skill-description">Flutter (90%), React (85%), HTML5 (95%), CSS3 (90%)</p>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-icon">⚙️</div>
+                    <div class="skill-icon">BE</div>
                     <h3 class="skill-title">Backend & Databases</h3>
                     <p class="skill-description">Django (80%), Node.js (75%), MySQL (85%), MongoDB (80%), Firebase (85%)</p>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-icon">🤖</div>
+                    <div class="skill-icon">AI</div>
                     <h3 class="skill-title">AI/ML</h3>
                     <p class="skill-description">NLP, TensorFlow, ML model training, Data pipelines</p>
                 </div>
                 <div class="skill-item">
-                    <div class="skill-icon">☁️</div>
+                    <div class="skill-icon">CD</div>
                     <h3 class="skill-title">Cloud & DevOps</h3>
                     <p class="skill-description">AWS (75%), GCP (70%), Git (90%), CI/CD, Android Studio</p>
                 </div>
@@ -337,100 +434,175 @@
         </div>
     </section>
 
+    <!-- Education Section -->
+    <section id="education" class="section education">
+        <div class="container">
+            <div class="storyline-header">
+                <h2 class="section-title centered">The Foundation: Where It All Began</h2>
+                <p class="storyline-intro">
+                    Every great journey starts with a solid foundation. My educational path has been a continuous 
+                    exploration of technology, innovation, and the endless possibilities that code can unlock.
+                </p>
+            </div>
+            <div class="education-timeline">
+                <div class="education-item">
+                    <div class="education-header">
+                        <h3 class="education-title">B.Tech in Computer Science and Engineering</h3>
+                        <p class="education-location">St. Peter's Engineering College | Hyderabad, India</p>
+                        <p class="education-period">2023 – 2027</p>
+                    </div>
+                    <div class="education-stats-compact">
+                        <div class="education-stat-compact">
+                            <span class="stat-label-compact">CGPA</span>
+                            <span class="stat-value-compact">8.4</span>
+                        </div>
+                        <div class="education-stat-compact">
+                            <span class="stat-label-compact">Status</span>
+                            <span class="stat-value-compact">Ongoing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" class="section projects">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Real-world solutions built with passion and innovation</p>
+            <div class="storyline-header">
+                <h2 class="section-title centered">The Journey: From Ideas to Impact</h2>
+                <p class="storyline-intro">
+                    Each project tells a story—a story of challenges faced, problems solved, and lives impacted. 
+                    From AI-powered farming solutions to intelligent form assistants, these projects represent 
+                    my commitment to building technology that truly matters.
+                </p>
             </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image-wrapper">
-                        <div class="project-image">
-                            <div class="project-mockup mobile-mockup">
-                                <div class="mockup-screen">
-                                    <div class="screen-content">
-                                        <div class="app-header">🌱 Greendot</div>
-                                        <div class="app-body">
-                                            <div class="feature-dot"></div>
-                                            <div class="feature-dot"></div>
-                                            <div class="feature-dot"></div>
-                                        </div>
+            
+            <!-- Neural Network Projects Layout -->
+            <div class="neural-network-container">
+                <!-- Cosmic Background Effects -->
+                <div class="cosmic-background">
+                    <div class="star-field"></div>
+                    <div class="nebula nebula-1"></div>
+                    <div class="nebula nebula-2"></div>
+                </div>
+                
+                <!-- Neural Connections SVG -->
+                <svg class="neural-connections" id="neuralSVG">
+                    <!-- Connections will be drawn dynamically -->
+                </svg>
+                
+                <!-- Central Energy Core -->
+                <div class="creator-core" id="creatorCore">
+                    <div class="core-outer-ring"></div>
+                    <div class="core-middle-ring"></div>
+                    <div class="core-inner-ring"></div>
+                    <div class="core-center">
+                        <div class="core-glow"></div>
+                        <div class="core-dot"></div>
+                    </div>
+                    <div class="creator-label">CREATOR</div>
+                </div>
+                
+                <!-- Project Nodes in Clean Corner Layout -->
+                <div class="projects-network">
+                    <!-- Greendot - Top Left -->
+                    <div class="network-node node-1" data-node="1">
+                        <div class="compact-project-card glowing-card" data-expanded="false">
+                            <div class="project-header-compact">
+                                <h3 class="project-title-compact">Greendot</h3>
+                                <button class="expand-btn" aria-label="Expand project">
+                                    <span class="expand-icon">+</span>
+                                </button>
                                     </div>
+                            <p class="project-desc-compact">AI-powered farming assistant with plant disease detection, supporting 13+ languages</p>
+                            <div class="project-details-expanded">
+                                <div class="project-tech-compact">
+                                    <span class="tech-tag">Flutter</span>
+                                    <span class="tech-tag">TensorFlow</span>
+                                    <span class="tech-tag">Firebase</span>
                                 </div>
+                                <p class="project-full-desc">Multilingual mobile assistant for farmers with plant disease detection, weather & market price updates, supporting 13 Indian languages.</p>
                             </div>
                         </div>
-                        <div class="project-overlay">
-                            <span class="project-badge">Featured</span>
+                    </div>
+                    
+                    <!-- FinScribe.ai - Top Right -->
+                    <div class="network-node node-2" data-node="2">
+                        <div class="compact-project-card glowing-card" data-expanded="false">
+                            <div class="project-header-compact">
+                                <h3 class="project-title-compact">FinScribe.ai</h3>
+                                <button class="expand-btn" aria-label="Expand project">
+                                    <span class="expand-icon">+</span>
+                                </button>
+                            </div>
+                            <p class="project-desc-compact">Automated MD&A generator using NLP and large language models</p>
+                            <div class="project-details-expanded">
+                                <div class="project-tech-compact">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">NLP/LLM</span>
+                                    <span class="tech-tag">Streamlit</span>
+                                </div>
+                                <p class="project-full-desc">AI-driven platform that generates professional MD&A reports from financial statements using NLP and large language models.</p>
+                        </div>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <div class="project-category">Mobile App • AI/ML</div>
-                        <h3 class="project-title">Greendot</h3>
-                        <p class="project-subtitle">AI-powered Farming Assistant</p>
-                        <p class="project-description">
-                            Multilingual mobile assistant for farmers with plant disease detection, 
-                            weather & market price updates, supporting 13 Indian languages.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-item">Flutter</span>
-                            <span class="tech-item">Firebase</span>
-                            <span class="tech-item">TensorFlow</span>
-                            <span class="tech-item">AI/ML</span>
+                    
+                    <!-- Fillora.in - Bottom Left -->
+                    <div class="network-node node-3" data-node="3">
+                        <div class="compact-project-card glowing-card" data-expanded="false">
+                            <div class="project-header-compact">
+                                <h3 class="project-title-compact">Fillora.in</h3>
+                                <button class="expand-btn" aria-label="Expand project">
+                                    <span class="expand-icon">+</span>
+                                </button>
+                </div>
+                            <p class="project-desc-compact">AI form assistant with document scanning, OCR, and conversational AI</p>
+                            <div class="project-details-expanded">
+                                <div class="project-tech-compact">
+                                    <span class="tech-tag">Flutter</span>
+                                    <span class="tech-tag">OCR</span>
+                                    <span class="tech-tag">AI/LLM</span>
+                                </div>
+                                <p class="project-full-desc">AI-powered app that automatically fills forms using document scanning, intelligent OCR, and conversational AI. Supports 10+ languages.</p>
+                            </div>
                         </div>
-                        <div class="project-meta-info">
-                            <span class="meta-item">📱 Mobile</span>
-                            <span class="meta-item">🌐 13 Languages</span>
-                            <span class="meta-item">🤖 AI-Powered</span>
+                    </div>
+                    
+                    <!-- Krishi Saaransh - Bottom Right -->
+                    <div class="network-node node-4" data-node="4">
+                        <div class="compact-project-card glowing-card" data-expanded="false">
+                            <div class="project-header-compact">
+                                <h3 class="project-title-compact">Krishi Saaransh</h3>
+                                <button class="expand-btn" aria-label="Expand project">
+                                    <span class="expand-icon">+</span>
+                                </button>
+                            </div>
+                            <p class="project-desc-compact">AI farming web platform with weather analysis and market tracking</p>
+                            <div class="project-details-expanded">
+                                <div class="project-tech-compact">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Streamlit</span>
+                                    <span class="tech-tag">AI</span>
+                                </div>
+                                <p class="project-full-desc">Comprehensive farming platform with weather analysis, market price tracking, crop recommendations, and multilingual AI chat assistant.</p>
+                        </div>
                         </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image-wrapper">
-                        <div class="project-image web-image">
-                            <div class="project-mockup web-mockup">
-                                <div class="mockup-screen">
-                                    <div class="screen-content">
-                                        <div class="app-header">🌾 Krishi Saaransh</div>
-                                        <div class="app-body">
-                                            <div class="chart-bar" style="height: 60%"></div>
-                                            <div class="chart-bar" style="height: 80%"></div>
-                                            <div class="chart-bar" style="height: 45%"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-overlay">
-                            <span class="project-badge">Featured</span>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-category">Web App • AI/ML</div>
-                        <h3 class="project-title">Krishi Saaransh</h3>
-                        <p class="project-subtitle">AI Farming Web Application</p>
-                        <p class="project-description">
-                            Comprehensive farming platform with weather analysis, market price tracking, 
-                            crop recommendations, and multilingual AI chat assistant.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-item">Python</span>
-                            <span class="tech-item">Streamlit</span>
-                            <span class="tech-item">AI</span>
-                            <span class="tech-item">Data Viz</span>
-                        </div>
-                        <div class="project-meta-info">
-                            <span class="meta-item">🌐 Web</span>
-                            <span class="meta-item">📊 Analytics</span>
-                            <span class="meta-item">🤖 AI Chat</span>
-                        </div>
-                    </div>
+            </div>
+            
+            <!-- More Projects Section -->
+            <div class="more-projects-section">
+                <div class="section-header">
+                    <h2 class="section-title">More of My Work</h2>
+                    <p class="section-subtitle">Additional projects and experiments</p>
                 </div>
+                <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image-wrapper">
                         <div class="project-image">
-                            <div class="project-icon">🔒</div>
+                                <div class="project-icon">FD</div>
                         </div>
                         <div class="project-overlay">
                             <span class="project-badge">ML Project</span>
@@ -450,20 +622,16 @@
                             <span class="tech-item">ML</span>
                             <span class="tech-item">MongoDB</span>
                         </div>
-                        <div class="project-meta-info">
-                            <span class="meta-item">⚡ Real-time</span>
-                            <span class="meta-item">📈 Analytics</span>
-                            <span class="meta-item">🔐 Secure</span>
                         </div>
                     </div>
-                </div>
+                    
                 <div class="project-card">
                     <div class="project-image-wrapper">
                         <div class="project-image">
                             <div class="project-mockup mobile-mockup">
                                 <div class="mockup-screen">
                                     <div class="screen-content">
-                                        <div class="app-header">☀️ Weatherly</div>
+                                            <div class="app-header">Weatherly</div>
                                         <div class="app-body">
                                             <div class="weather-icon">☀️</div>
                                         </div>
@@ -488,93 +656,6 @@
                             <span class="tech-item">API</span>
                             <span class="tech-item">UI/UX</span>
                         </div>
-                        <div class="project-meta-info">
-                            <span class="meta-item">📱 Mobile</span>
-                            <span class="meta-item">🌍 Global</span>
-                            <span class="meta-item">✨ Animated</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image-wrapper">
-                        <div class="project-image">
-                            <div class="project-mockup mobile-mockup">
-                                <div class="mockup-screen">
-                                    <div class="screen-content">
-                                        <div class="app-header">📝 Fillora.in</div>
-                                        <div class="app-body">
-                                            <div class="form-field"></div>
-                                            <div class="form-field"></div>
-                                            <div class="form-field"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-overlay">
-                            <span class="project-badge">Featured</span>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-category">Mobile App • AI/OCR</div>
-                        <h3 class="project-title">Fillora.in</h3>
-                        <p class="project-subtitle">AI Form Assistant</p>
-                        <p class="project-description">
-                            AI-powered app that automatically fills forms using document scanning, 
-                            intelligent OCR, and conversational AI. Supports 10+ languages.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-item">Flutter</span>
-                            <span class="tech-item">Firebase</span>
-                            <span class="tech-item">OCR</span>
-                            <span class="tech-item">AI/LLM</span>
-                        </div>
-                        <div class="project-meta-info">
-                            <span class="meta-item">📱 Mobile</span>
-                            <span class="meta-item">🔍 OCR</span>
-                            <span class="meta-item">🤖 AI-Powered</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image-wrapper">
-                        <div class="project-image web-image">
-                            <div class="project-mockup web-mockup">
-                                <div class="mockup-screen">
-                                    <div class="screen-content">
-                                        <div class="app-header">📊 FinScribe.ai</div>
-                                        <div class="app-body">
-                                            <div class="chart-bar" style="height: 60%"></div>
-                                            <div class="chart-bar" style="height: 80%"></div>
-                                            <div class="chart-bar" style="height: 45%"></div>
-                                            <div class="chart-bar" style="height: 90%"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-overlay">
-                            <span class="project-badge">Featured</span>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <div class="project-category">Web App • NLP/LLM</div>
-                        <h3 class="project-title">FinScribe.ai</h3>
-                        <p class="project-subtitle">Automated MD&A Generator</p>
-                        <p class="project-description">
-                            AI-driven platform that generates professional MD&A reports from financial statements 
-                            using NLP and large language models.
-                        </p>
-                        <div class="project-tech">
-                            <span class="tech-item">Python</span>
-                            <span class="tech-item">NLP/LLM</span>
-                            <span class="tech-item">Finance</span>
-                            <span class="tech-item">Streamlit</span>
-                        </div>
-                        <div class="project-meta-info">
-                            <span class="meta-item">🌐 Web</span>
-                            <span class="meta-item">📊 Reports</span>
-                            <span class="meta-item">🤖 AI</span>
                         </div>
                     </div>
                 </div>
@@ -635,15 +716,23 @@
                         <p class="contact-desc">Drop me a line anytime</p>
                     </div>
                     <div class="contact-card">
-                        <div class="contact-icon">💼</div>
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </div>
                         <h3 class="contact-title">LinkedIn</h3>
-                        <a href="https://linkedin.com/in/keerthan" target="_blank" class="contact-link">Connect with me</a>
+                        <a href="https://www.linkedin.com/in/keerthan-reddy-71a5b5370/" target="_blank" class="contact-link">Connect with me</a>
                         <p class="contact-desc">Let's network and grow together</p>
                     </div>
                     <div class="contact-card">
-                        <div class="contact-icon">💻</div>
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </div>
                         <h3 class="contact-title">GitHub</h3>
-                        <a href="https://github.com/keerthanreddy176" target="_blank" class="contact-link">View my work</a>
+                        <a href="https://github.com/Keerthanreddy01" target="_blank" class="contact-link">View my work</a>
                         <p class="contact-desc">Check out my code and projects</p>
                     </div>
                     <div class="contact-card">
@@ -697,6 +786,7 @@
                     <ul class="footer-links">
                         <li><a href="#about">About</a></li>
                         <li><a href="#experience">Experience</a></li>
+                        <li><a href="#education">Education</a></li>
                         <li><a href="#projects">Projects</a></li>
                         <li><a href="#skills">Skills</a></li>
                     </ul>
@@ -705,8 +795,8 @@
                     <h4 class="footer-title">Connect</h4>
                     <ul class="footer-links">
                         <li><a href="mailto:keerthanreddy1706@gmail.com">Email</a></li>
-                        <li><a href="https://github.com/keerthanreddy176" target="_blank">GitHub</a></li>
-                        <li><a href="https://linkedin.com/in/keerthan" target="_blank">LinkedIn</a></li>
+                        <li><a href="https://github.com/Keerthanreddy01" target="_blank">GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/keerthan-reddy-71a5b5370/" target="_blank">LinkedIn</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
